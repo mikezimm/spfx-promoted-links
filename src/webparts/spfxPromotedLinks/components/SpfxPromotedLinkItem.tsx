@@ -40,7 +40,7 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
          role="listitem" 
          onMouseOver={this.mouseOver.bind(this)} onMouseOut={this.mouseOut.bind(this)}>
         <div className={styles.pLinkItemWrapper}>
-          <Image className={styles.pLinkItemImage} src={this.props.imageUrl} shouldFadeIn={true} />
+          <Image className={styles.pLinkItemImage} src={this.props.imageUrl} shouldFadeIn={true} imageFit={ImageFit.centerCover} />
           <div className={this.state.hovering ? styles.pLinkItemHoverPanelExpanded : styles.pLinkItemHoverPanel}>
             <div className={styles.pLinkItemTitle}>{this.props.title}</div>
             <div className={styles.pLinkItemDesc}>{this.props.description}</div>
