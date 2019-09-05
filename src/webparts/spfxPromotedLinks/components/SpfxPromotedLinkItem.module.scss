@@ -15,6 +15,7 @@
     position: relative;
     border: #bebebe 1px solid;
     margin: 0px 8px 8px 0px;
+    overflow: hidden;
   }
   .pLinkItemImage {
     height: $box-size;
@@ -23,13 +24,15 @@
   .pLinkItemHoverPanel {
     position: absolute;
     top: $box-size * .80;
+    height: $box-size;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    background-color: rgba( 0,0,0,0.6 );
+    background-color: rgba( 0,0,0,0.75 );
     filter: alpha(opacity=50);
     padding: 2px;
-    overflow: hidden;
+
+    // height: $box-size * .20;
     /*
     -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
     transition: opacity 0.5s, transform 0.5s;
@@ -46,11 +49,14 @@
     // See this guide for things like formulas in css and extending etc
     // https://sass-lang.com/guide
     */
+
+    // overflow: hidden;
     -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
     transition: opacity 0.5s, transform 0.5s;
     -webkit-transform: translate3d(0,-$box-size * .80,0);
     transform: translate3d(0,-$box-size * .80,0);
-    transition:all 0.3s ease;
+    transition:all 0.35s ease;
+    transition-delay:0.25s;
   }
   .pLinkItemHoverPanelNotExpanded {
     @extend .pLinkItemHoverPanel;
@@ -64,7 +70,8 @@
     transition: opacity 0.5s, transform 0.5s;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
-    transition:all 0.3s ease;
+    transition:all 0.7s ease;
+    //transition-delay:0.15s;
   }
   .pLinkItemTitle {
     font-size: ($box-size - ($box-size * .80)) - 4px;
@@ -73,7 +80,10 @@
     color: #eee;
   }
   .pLinkItemDesc {
+    font-size: ($box-size - ($box-size * .80)) - 4px;
+    line-height: ($box-size - ($box-size * .80)) - 4px;
     font-size: 8pt;
+    //line-height: ($box-size - ($box-size * .80)) - 4px;
     color: #ccc;
   }
 }
