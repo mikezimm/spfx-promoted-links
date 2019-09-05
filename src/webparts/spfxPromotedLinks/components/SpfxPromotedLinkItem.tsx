@@ -5,14 +5,19 @@ import { css, IImageProps, } from 'office-ui-fabric-react';
 
 import styles from './SpfxPromotedLinkItem.module.scss';
 
+//Category may need to be defined optionally here
+//https://www.logicbig.com/tutorials/misc/typescript/interface-to-describe-object-with-optional-properties.html
+
 export interface IPromotedLinkItemProps {
   imageUrl: string;
   title: string;
   description: string;
   href: string;
+  category:string;
 }
 export interface IPromotedLinkItemState {
   hovering: any;
+  visible: any;
 }
 export default class PromotedLinkItem extends React.Component<IPromotedLinkItemProps, IPromotedLinkItemState> {
 
@@ -20,7 +25,8 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
     super(props);
 
     this.state = {
-      hovering: 10
+      hovering: 10,
+      visible:10
     };
   }
 
@@ -33,18 +39,24 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
   }
 
   public render(): JSX.Element {
+
+    /*    main wrapper was this:
+        <div className={[
+          styles.pLinkItemWrapper,
+          this.state.visible === true  ? styles.pLinkItemWrapperExpanded
+          : this.state.visible === false  ? styles.pLinkItemWrapperNotExpanded
+          : ""
+          ].join(" ")}>
+    */
+
+
     return (
       <a href={this.props.href} 
          className={styles.promotedLinks}
          target="_top" 
          role="listitem" 
          onMouseOver={this.mouseOver.bind(this)} onMouseOut={this.mouseOut.bind(this)}>
-        <div className={[
-          styles.pLinkItemWrapper,
-          this.state.hovering === true  ? styles.pLinkItemWrapperExpanded
-          : this.state.hovering === false  ? styles.pLinkItemWrapperNotExpanded
-          : ""
-          ].join(" ")}>
+        <div className={ [styles.pLinkItemWrapper, styles.pLinkItemWrapperExpanded].join(" ")}>
 
           <Image className={styles.pLinkItemImage} src={this.props.imageUrl} shouldFadeIn={true} imageFit={ImageFit.centerCover} />
           <div className={[styles.pLinkItemHoverPanel, 

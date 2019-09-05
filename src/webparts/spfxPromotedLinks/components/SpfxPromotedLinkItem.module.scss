@@ -1,7 +1,7 @@
 .promotedLinks {
 
   $box-size: 150px;
-  $wrapper-size-not-expanded: $box-size;
+  $wrapper-size-not-expanded: 10px;
 
   .container {
     max-width: 100%;
@@ -9,6 +9,7 @@
     position: relative;
 
   }
+
   .pLinkItemWrapper {
     float: left;
     display: block;
@@ -19,6 +20,7 @@
     margin: 8px 8px 8px 0px;
     overflow: hidden;
   }
+  
   .pLinkItemWrapperExpanded {
     @extend .pLinkItemWrapper;
     // top: 0px;
@@ -27,8 +29,11 @@
     // See this guide for things like formulas in css and extending etc
     // https://sass-lang.com/guide
     */
+
     width: $box-size;
     height: $box-size;
+    margin: 0px 0px 0px 0px;
+    border:0px;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
     //-webkit-transform: scale(0.5,0.5);
@@ -44,8 +49,8 @@
     // See this guide for things like formulas in css and extending etc
     // https://sass-lang.com/guide
     */
-    width: $wrapper-size-not-expanded;
-    height: $wrapper-size-not-expanded;
+    width: 0px;
+    height: 0px;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
     //-webkit-transform: scale(1,1);
@@ -53,7 +58,6 @@
     transition:all 0.3s ease;
     //transition-delay:0.15s;
   }
-
   .pLinkItemImage {
     height: $box-size;
     width: $box-size;
@@ -111,16 +115,16 @@
     //transition-delay:0.15s;
   }
   .pLinkItemTitle {
-    font-size: ($box-size - ($box-size * .80)) - 4px;
+    font-size: ($box-size - ($box-size * .80)) - 10px;
     line-height: ($box-size - ($box-size * .80)) - 4px;
     font-weight: bold;
     color: #eee;
   }
   .pLinkItemDesc {
-    font-size: ($box-size - ($box-size * .80)) - 4px;
-    line-height: ($box-size - ($box-size * .80)) - 4px;
+
     font-size: 8pt;
     //line-height: ($box-size - ($box-size * .80)) - 4px;
     color: #ccc;
   }
 }
+
