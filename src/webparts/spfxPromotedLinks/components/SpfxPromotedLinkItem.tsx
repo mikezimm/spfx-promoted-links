@@ -39,7 +39,12 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
          target="_top" 
          role="listitem" 
          onMouseOver={this.mouseOver.bind(this)} onMouseOut={this.mouseOut.bind(this)}>
-        <div className={styles.pLinkItemWrapper}>
+        <div className={[
+          styles.pLinkItemWrapper,
+          this.state.hovering === true  ? styles.pLinkItemWrapperNotExpanded
+          : this.state.hovering === false  ? styles.pLinkItemWrapperExpanded
+          : ""
+          ].join(" ")}>
           <Image className={styles.pLinkItemImage} src={this.props.imageUrl} shouldFadeIn={true} imageFit={ImageFit.centerCover} />
           <div className={[styles.pLinkItemHoverPanel, 
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator#Conditional_chains
