@@ -2,6 +2,7 @@
 
   $box-size: 150px;
   $wrapper-size-not-expanded: 10px;
+  $tileMargin:  8px 8px 0px 0px;
 
   .container {
     max-width: 100%;
@@ -17,7 +18,7 @@
     width: $box-size;
     position: relative;
     border: #bebebe 1px solid;
-    margin: 8px 8px 8px 0px;
+    margin:  $tileMargin;
     overflow: hidden;
   }
   
@@ -32,7 +33,7 @@
 
     width: $box-size;
     height: $box-size;
-    margin: 0px 0px 0px 0px;
+    margin:  $tileMargin;
     border:0px;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
@@ -51,6 +52,7 @@
     */
     width: 0px;
     height: 0px;
+    margin: 0px 0px 0px 0px;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
     //-webkit-transform: scale(1,1);
