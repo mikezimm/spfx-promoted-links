@@ -12,7 +12,7 @@ export interface IPromotedLinkItemProps {
   href: string;
 }
 export interface IPromotedLinkItemState {
-  hovering: boolean;
+  hovering: any;
 }
 export default class PromotedLinkItem extends React.Component<IPromotedLinkItemProps, IPromotedLinkItemState> {
 
@@ -20,7 +20,7 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
     super(props);
 
     this.state = {
-      hovering: false
+      hovering: 10
     };
   }
 
@@ -41,7 +41,12 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
          onMouseOver={this.mouseOver.bind(this)} onMouseOut={this.mouseOut.bind(this)}>
         <div className={styles.pLinkItemWrapper}>
           <Image className={styles.pLinkItemImage} src={this.props.imageUrl} shouldFadeIn={true} imageFit={ImageFit.centerCover} />
-          <div className={this.state.hovering ? styles.pLinkItemHoverPanelExpanded : styles.pLinkItemHoverPanel}>
+          <div className={[styles.pLinkItemHoverPanel, 
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator#Conditional_chains
+            this.state.hovering === true  ? styles.pLinkItemHoverPanelExpanded
+            : this.state.hovering === false  ? styles.pLinkItemHoverPanelNotExpanded
+            : ""
+            ].join(" ")}>
             <div className={styles.pLinkItemTitle}>{this.props.title}</div>
             <div className={styles.pLinkItemDesc}>{this.props.description}</div>
           </div>
