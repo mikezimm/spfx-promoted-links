@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from './SpfxPromotedLinks.module.scss';
 import { ISpfxPromotedLinksProps } from './ISpfxPromotedLinksProps';
+import { ISpfxPromotedLinksState } from './ISpfxPromotedLinksState';
 import { escape } from '@microsoft/sp-lodash-subset';
 
 import { Pivot, PivotItem, PivotLinkSize, PivotLinkFormat } from 'office-ui-fabric-react/lib/Pivot';
@@ -11,7 +12,15 @@ import PromotedLinkItem from './SpfxPromotedLinkItem';
 
 import * as tileItems from './SampleData';
 
-export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLinksProps, {}> {
+export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLinksProps, ISpfxPromotedLinksState> {
+
+  constructor(props: ISpfxPromotedLinksProps){
+    super(props);
+    this.state = {
+      allTiles: [],
+      showAllTiles: false
+    }
+  }
 
   public createPivotItem(){
     var thisPiv = tileItems.pivtTitles[Math.floor(Math.random()*tileItems.pivtTitles.length)];
@@ -64,7 +73,34 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
   }
 
   public onLinkClick(item: PivotItem): void {
+    //This sends back the correct pivot category which matches the category on the tile.
     console.log(item.props.headerText);
+
+    const filteredTiles: PromotedLinkItem[] = this.props.allTiles.filter(tile => {
+      if (
+          (tile.category.toLowerCase().indexOf(item.props.headerText) === 0)
+      ){
+        return tile;
+      }
+    });
+
+    // I think in here for the return, I need to have it just update the state and not return anything.
+
+    /*
+
+    return filteredTiles.map(t => ({
+      key: this._getTileUniqueId(t),
+      name: `(${t.props.category}) ${ props.description}`
+    }));
+
+
+    */
+  } //End onClick
+
+  //Unique ID for now is just the Category, Title and Description
+  private _getTileUniqueId(tile: PromotedLinkItem): string {
+    return (`${ tile.props.category.replace(' ','_') } ${ tile.props.title.replace(' ','_') } ${tile.props.description.replace(' ','_') }`).toLowerCase();
   }
+
 
 }
