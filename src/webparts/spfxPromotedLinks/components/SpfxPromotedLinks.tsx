@@ -66,6 +66,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
     return (
       <div className={styles.spfxPromotedLinks}>
         <div className={styles.container}>
+        {console.log("public render:  tileItems.pivtTitles")}
         {console.log(tileItems.pivtTitles)}
         
           {/*//https://developer.microsoft.com/en-us/fabric#/controls/web/pivot*/}
@@ -96,7 +97,6 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                               mission={ mission }
                               onRemoveMission={ this.props.onDeleteMission } />
 
-           
 
               this.props.allTiles.map(newTile => (
                 <PromotedLinkItem
@@ -106,7 +106,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                   href={newTile.href}
                   category={newTile.category} />
                 ))
-              */   
+   */              
               }
 
           </div>
@@ -117,6 +117,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
 
   private onLinkClick = (item: PivotItem): void => {
     //This sends back the correct pivot category which matches the category on the tile.
+    console.log("onLinkClick:  item.props.headerText");
     console.log(item.props.headerText);
     //debugger;
 
@@ -132,7 +133,8 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
       }
     });
 */
-    console.log(filteredTiles);
+    console.log("onLinkClick: this.state.allTiles");
+    console.log(this.state.allTiles);
 
     // I think in here for the return, I need to have it just update the state and not return anything.
 
