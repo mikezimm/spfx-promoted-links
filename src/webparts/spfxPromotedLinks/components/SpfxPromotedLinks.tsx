@@ -26,48 +26,25 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
     }
   }
 
+  
+/*
   public componentDidMount(): void {
+    this.setState({
+      tiles: MissionService.getMissions()
+    });
+  }
+*/
+
+  public componentDidMount(): void {
+    let x = TileService.getAllTiles();
+    // At this point in cosnole, "x" does return an array of objects of the correct type
     this.setState({
       allTiles: TileService.getAllTiles()
     });
+    // But this still returns an empty array
     console.log(this.state.allTiles);
   }
 
-  public createPivotItem(newTile){
-
-
-
-    /*
-    let newTile = {} as IPromotedLinkItemProps;
-    
-
-    newTile.category = tileItems.pivtTitles[Math.floor(Math.random()*tileItems.pivtTitles.length)];
-    newTile.imageUrl = tileItems.samplePics[Math.floor(Math.random()*tileItems.samplePics.length)];
-    newTile.title = newTile.category + " " + Math.floor(Math.random() * 100);
-    newTile.description = "Description " + Math.floor(Math.random() * 10000) + " --- " + newTile.category;
-    newTile.href = tileItems.sampleLinks[Math.floor(Math.random()*tileItems.sampleLinks.length)];
-    */
-    // concatenating state object arrays:  https://www.robinwieruch.de/react-state-array-add-update-remove
-        /*
-    this.setState(state => {
-      const allTiles = state.allTiles.concat(newTile);
-      return {
-        allTiles
-      };
-    });
-
-
-    */
-    // Why does this NOT work instead???      return <PromotedLinkItem newTile />
-
-    return <PromotedLinkItem
-    imageUrl={newTile.imageUrl}
-    title={newTile.title}
-    description={newTile.description}
-    href={newTile.href}
-    category={newTile.category} />
-
-  }
 
   //http://react.tips/how-to-create-reactjs-components-dynamically/ - based on createImage
   public createPivot(pivT) {
@@ -82,14 +59,6 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
     )
   }
 
-/*
-  public componentDidMount(): void {
-    this.setState({
-      tiles: MissionService.getMissions()
-    });
-  }
-*/
-
 
   public render(): React.ReactElement<ISpfxPromotedLinksProps> {
   
@@ -97,10 +66,14 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
       <div className={styles.spfxPromotedLinks}>
         <div className={styles.container}>
         {console.log(tileItems.pivtTitles)}
+        
           {/*//https://developer.microsoft.com/en-us/fabric#/controls/web/pivot*/}
+
           <Pivot linkSize={PivotLinkSize.large} onLinkClick={this.onLinkClick}>
             {this.createPivots(tileItems.pivtTitles)}
           </Pivot>
+
+
           <br/>
           <div>
 
@@ -122,7 +95,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                               mission={ mission }
                               onRemoveMission={ this.props.onDeleteMission } />
 
-              */
+
 
               this.props.allTiles.map(newTile => (
                 <PromotedLinkItem
@@ -132,7 +105,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                   href={newTile.href}
                   category={newTile.category} />
                 ))
-              
+              */              
               }
 
           </div>

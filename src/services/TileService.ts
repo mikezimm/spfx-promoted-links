@@ -40,18 +40,23 @@ export const samplePics = [
 
         let allTiles = [];
 
+        var i:number
+        for(i = 0;i<=10;i++) {
 
-        let newTile = {} as IPromotedLinkItemProps;
+          let newTile = {} as IPromotedLinkItemProps;
 
-        newTile.category = pivtTitles[Math.floor(Math.random()*pivtTitles.length)];
-        newTile.imageUrl = samplePics[Math.floor(Math.random()*samplePics.length)];
-        newTile.title = newTile.category + " " + Math.floor(Math.random() * 100);
-        newTile.description = "Description " + Math.floor(Math.random() * 10000) + " --- " + newTile.category;
-        newTile.href = sampleLinks[Math.floor(Math.random()*sampleLinks.length)];
+          newTile.category = pivtTitles[Math.floor(Math.random()*pivtTitles.length)];
+          newTile.imageUrl = samplePics[Math.floor(Math.random()*samplePics.length)];
+          newTile.title = newTile.category + " " + Math.floor(Math.random() * 100);
+          newTile.description = "Description " + Math.floor(Math.random() * 10000) + " --- " + newTile.category;
+          newTile.href = sampleLinks[Math.floor(Math.random()*sampleLinks.length)];
+  
+          allTiles = allTiles.concat(newTile);
 
-        allTiles = allTiles.concat(newTile);
+       }
 
-        
+       console.log("These are the expected tiles");
+       console.log(allTiles);
         return allTiles;
         
         /*
