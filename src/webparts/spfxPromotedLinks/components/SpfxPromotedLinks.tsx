@@ -24,8 +24,21 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
       allTiles: [],
       showAllTiles: false
     }
+
+    // because our event handler needs access to the component, bind 
+    //  the component to the function so it can get access to the
+    //  components properties (this.props)... otherwise "this" is undefined
+    this.onLinkClick = this.onLinkClick.bind(this);
+
   }
 
+    /**
+   * OOTB React lifecycle event that fires after the component has been mounted. 
+   * This is the ideal spot to load data on rendering.
+   * 
+   * @see {@link https://reactjs.org/docs/react-component.html#componentdidmount|React Docs - componentDidMount()}
+   * @memberof ApolloViewerReact
+   */
   
 /*
   public componentDidMount(): void {
@@ -39,26 +52,14 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
     let x = TileService.getAllTiles();
     // At this point in cosnole, "x" does return an array of objects of the correct type
     this.setState({
-      allTiles: TileService.getAllTiles()
+      allTiles: TileService.getAllTiles(),
     });
     // But this still returns an empty array
+    console.log("These is list of tiles returned from TileService in let x = array of tiles");   
+    console.log(x);
+    console.log("These is what I get after setting state in componentDidMount:");   
     console.log(this.state.allTiles);
   }
-
-
-  //http://react.tips/how-to-create-reactjs-components-dynamically/ - based on createImage
-  public createPivot(pivT) {
-    return (
-      <PivotItem headerText={pivT} />
-    )
-  }
-
-  public createPivots(pivtTitles){
-    return (
-      pivtTitles.map(this.createPivot)
-    )
-  }
-
 
   public render(): React.ReactElement<ISpfxPromotedLinksProps> {
   
@@ -95,7 +96,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                               mission={ mission }
                               onRemoveMission={ this.props.onDeleteMission } />
 
-
+           
 
               this.props.allTiles.map(newTile => (
                 <PromotedLinkItem
@@ -105,7 +106,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                   href={newTile.href}
                   category={newTile.category} />
                 ))
-              */              
+              */   
               }
 
           </div>
@@ -145,6 +146,21 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
 
     */
   } //End onClick
+
+
+
+  //http://react.tips/how-to-create-reactjs-components-dynamically/ - based on createImage
+  public createPivot(pivT) {
+    return (
+      <PivotItem headerText={pivT} />
+    )
+  }
+
+  public createPivots(pivtTitles){
+    return (
+      pivtTitles.map(this.createPivot)
+    )
+  }
 
   //Unique ID for now is just the Category, Title and Description
   private _getTileUniqueId(tile: PromotedLinkItem): string {

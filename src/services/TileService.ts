@@ -55,7 +55,7 @@ export const samplePics = [
 
        }
 
-       console.log("These are the expected tiles");
+       console.log("These are the expected tiles found in TileService\getAllTiles.ts");
        console.log(allTiles);
         return allTiles;
         
