@@ -25,7 +25,9 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
 
     this.state = {
       allTiles: x,
-      showAllTiles: false
+      filteredTiles: [],
+      showAllTiles: false,
+      filteredCategory: "-",
     }
 
     // because our event handler needs access to the component, bind 
@@ -74,15 +76,15 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
         
           {/*//https://developer.microsoft.com/en-us/fabric#/controls/web/pivot*/}
 
-          <Pivot linkSize={PivotLinkSize.large} onLinkClick={this.onLinkClick}>
+          <Pivot linkSize={PivotLinkSize.large} onLinkClick={this.onLinkClick.bind(this)}>
             {this.createPivots(tileItems.pivtTitles)}
           </Pivot>
 
 
           <br/>
           <div>
-            {console.log("this.props - look for .allTiles")}
-            {console.log(this.props)}
+            {console.log("in Return() this.state - look for .allTiles")}
+            {console.log(this.state)}
             {
               /* 
               *  for each mission passed into this component,
@@ -102,7 +104,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                               onRemoveMission={ this.props.onDeleteMission } />
 
    */ 
-              this.state.allTiles.map(newTile => (
+              this.state.filteredTiles.map(newTile => (
                 <PromotedLinkItem
                   imageUrl={newTile.imageUrl}
                   title={newTile.title}
@@ -124,9 +126,15 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
     console.log("onLinkClick:  item.props.headerText");
     console.log(item.props.headerText);
     //debugger;
+    console.log("onLinkClick:  this.state - before setState");
+    console.log(this.state);
 
     const filteredTiles: IPromotedLinkItemProps[] = this.state.allTiles.filter(tile => tile.category === item.props.headerText);
 
+    this.setState({
+      filteredCategory: item.props.headerText,
+      filteredTiles: filteredTiles,
+    });
     /*
 //    const filteredTiles: PromotedLinkItem[] = this.props.allTiles.filter(tile => {   
     var filteredTiles = this.props.allTiles.filter(tile => {
@@ -137,6 +145,8 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
       }
     });
 */
+    console.log("onLinkClick: this.state - after setState");
+    console.log(this.state);
     console.log("onLinkClick: this.state.allTiles");
     console.log(this.state.allTiles);
     console.log("onLinkClick: filteredTiles");

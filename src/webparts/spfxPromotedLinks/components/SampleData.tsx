@@ -12,7 +12,7 @@ export const samplePics = [
   export const sampleCats = [
     "People",
     "Places",
-    "Things"
+    "Things",
   ]
   // randomItem = sampleLinks[Math.floor(Math.random()*sampleLinks.length)];
   export const sampleLinks = [
@@ -29,5 +29,6 @@ export const samplePics = [
   export const pivtTitles = [
     "People",
     "Places",
-    "Things"
+    "Things",
+
   ];

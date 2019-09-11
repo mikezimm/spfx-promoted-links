@@ -31,7 +31,7 @@ export const samplePics = [
   export const pivtTitles = [
     "People",
     "Places",
-    "Things"
+    "Things",
   ];
 
   export class TileService {
