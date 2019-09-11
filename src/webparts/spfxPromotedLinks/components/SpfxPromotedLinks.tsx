@@ -20,11 +20,8 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
 
   constructor(props: ISpfxPromotedLinksProps){
     super(props);
-
-    let x = TileService.getAllTiles();
-
     this.state = {
-      allTiles: x,
+      allTiles: [],
       showAllTiles: false
     }
 
@@ -49,7 +46,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
       tiles: MissionService.getMissions()
     });
   }
-
+*/
 
   public componentDidMount(): void {
     let x = TileService.getAllTiles();
@@ -63,7 +60,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
     console.log("These is what I get after setting state in componentDidMount:");   
     console.log(this.state.allTiles);
   }
-*/
+
   public render(): React.ReactElement<ISpfxPromotedLinksProps> {
   
     return (
@@ -81,8 +78,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
 
           <br/>
           <div>
-            {console.log("this.props - look for .allTiles")}
-            {console.log(this.props)}
+
             {
               /* 
               *  for each mission passed into this component,
@@ -101,8 +97,8 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                               mission={ mission }
                               onRemoveMission={ this.props.onDeleteMission } />
 
-   */ 
-              this.state.allTiles.map(newTile => (
+
+              this.props.allTiles.map(newTile => (
                 <PromotedLinkItem
                   imageUrl={newTile.imageUrl}
                   title={newTile.title}
@@ -110,7 +106,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
                   href={newTile.href}
                   category={newTile.category} />
                 ))
-             
+   */              
               }
 
           </div>
@@ -139,8 +135,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
 */
     console.log("onLinkClick: this.state.allTiles");
     console.log(this.state.allTiles);
-    console.log("onLinkClick: filteredTiles");
-    console.log(filteredTiles);
+
     // I think in here for the return, I need to have it just update the state and not return anything.
 
     /*
