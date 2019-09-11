@@ -41,7 +41,7 @@ export const samplePics = [
         let allTiles = [];
 
         var i:number
-        for(i = 0;i<=10;i++) {
+        for(i = 0;i<=20;i++) {
 
           let newTile = {} as IPromotedLinkItemProps;
 

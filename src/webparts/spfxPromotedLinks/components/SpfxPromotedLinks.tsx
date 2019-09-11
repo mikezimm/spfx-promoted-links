@@ -66,8 +66,39 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
     console.log(this.state.allTiles);
   }
 */
+
   public render(): React.ReactElement<ISpfxPromotedLinksProps> {
   
+    let tileBuild;
+
+    if (this.state.allTiles.length >10) {
+
+     tileBuild = this.state.allTiles.map(newTile => (
+      <PromotedLinkItem
+        parentCat = {this.state.filteredCategory}
+        imageUrl={newTile.imageUrl}
+        title={newTile.title}
+        description={newTile.description}
+        href={newTile.href}
+        category={newTile.category} />
+      ));
+
+
+    } else {
+
+      tileBuild = this.state.filteredTiles.map(newTile => (
+        <PromotedLinkItem
+          parentCat = {this.state.filteredCategory}
+          imageUrl={newTile.imageUrl}
+          title={newTile.title}
+          description={newTile.description}
+          href={newTile.href}
+          category={newTile.category} />
+        ));
+
+
+    }
+
     return (
       <div className={styles.spfxPromotedLinks}>
         <div className={styles.container}>
@@ -83,18 +114,11 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
 
           <br/>
           <div>
-            {console.log("in Return() this.state - look for .allTiles")}
+            {console.log("in Return() this.state - look for .filteredTiles")}
             {console.log(this.state)}
-            {
+            { (tileBuild)
 
-              this.state.filteredTiles.map(newTile => (
-                <PromotedLinkItem
-                  imageUrl={newTile.imageUrl}
-                  title={newTile.title}
-                  description={newTile.description}
-                  href={newTile.href}
-                  category={newTile.category} />
-                ))
+
              
               }
 

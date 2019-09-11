@@ -17,7 +17,7 @@
     height: $box-size;
     width: $box-size;
     position: relative;
-    border: #bebebe 1px solid;
+    border: #bebebe 0px solid;
     margin:  $tileMargin;
     overflow: hidden;
   }
@@ -34,12 +34,12 @@
     width: $box-size;
     height: $box-size;
     margin:  $tileMargin;
-    border:0px;
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
+    border: 1px;
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
     //-webkit-transform: scale(0.5,0.5);
     //transform: scale(0.5,0.5);
-    transition:all 0.3s ease;
+    transition:all 0.5s ease;
     //transition-delay:0.15s;
   }
   .pLinkItemWrapperNotExpanded {
@@ -51,13 +51,14 @@
     // https://sass-lang.com/guide
     */
     width: 0px;
-    height: 0px;
-    margin: 0px 0px 0px 0px;
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
+    height: $box-size;
+    margin: 8px 0px 0px 0px;
+    border: 0px;
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
     //-webkit-transform: scale(1,1);
     //transform: scale(1,1);
-    transition:all 0.3s ease;
+    transition:all 0.5s ease;
     //transition-delay:0.15s;
   }
   .pLinkItemImage {

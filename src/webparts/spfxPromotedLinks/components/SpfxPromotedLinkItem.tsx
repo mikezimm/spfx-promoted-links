@@ -14,6 +14,7 @@ export interface IPromotedLinkItemProps {
   description: string;
   href: string;
   category:string;
+  parentCat:string;
 }
 export interface IPromotedLinkItemState {
   hovering: any;
@@ -28,6 +29,10 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
       hovering: 10,
       visible:10
     };
+
+    console.log("PromotedLinkItem constructor:  this - before setState");
+    console.log(this);
+
   }
 
   public mouseOver(event): void {
@@ -41,12 +46,20 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
   public render(): JSX.Element {
 
     /*    main wrapper was this:
-        <div className={[
+             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator#Conditional_chains
+
+             <div className={[
           styles.pLinkItemWrapper,
           this.state.visible === true  ? styles.pLinkItemWrapperExpanded
           : this.state.visible === false  ? styles.pLinkItemWrapperNotExpanded
           : ""
           ].join(" ")}>
+
+          this.props.parentCat === this.props.category  ? styles.pLinkItemWrapperExpanded
+          : styles.pLinkItemWrapperNotExpanded
+          ].join(" ")}>
+
+
     */
 
 
@@ -56,7 +69,10 @@ export default class PromotedLinkItem extends React.Component<IPromotedLinkItemP
          target="_top" 
          role="listitem" 
          onMouseOver={this.mouseOver.bind(this)} onMouseOut={this.mouseOut.bind(this)}>
-        <div className={ [styles.pLinkItemWrapper, styles.pLinkItemWrapperExpanded].join(" ")}>
+        <div className={ [styles.pLinkItemWrapper,           
+          this.props.parentCat === this.props.category  ? styles.pLinkItemWrapperExpanded
+          : styles.pLinkItemWrapperNotExpanded
+          ].join(" ")}>
 
           <Image className={styles.pLinkItemImage} src={this.props.imageUrl} shouldFadeIn={true} imageFit={ImageFit.centerCover} />
           <div className={[styles.pLinkItemHoverPanel, 
