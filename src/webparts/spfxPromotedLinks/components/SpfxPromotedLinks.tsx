@@ -76,7 +76,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
         
           {/*//https://developer.microsoft.com/en-us/fabric#/controls/web/pivot*/}
 
-          <Pivot linkSize={PivotLinkSize.large} onLinkClick={this.onLinkClick.bind(this)}>
+          <Pivot linkSize={PivotLinkSize.large} onLinkClick={this.onLinkClick}>
             {this.createPivots(tileItems.pivtTitles)}
           </Pivot>
 
@@ -86,24 +86,7 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
             {console.log("in Return() this.state - look for .allTiles")}
             {console.log(this.state)}
             {
-              /* 
-              *  for each mission passed into this component,
-              *    bind it to the ApolloMission component
-              * 
-              {this.createPivotItem()}
-              {this.createPivotItem()}
-              {this.createPivotItem()}
-              {this.createPivotItem()}
-              {this.createPivotItem()}
-              {this.createPivotItem()}
-              {this.createPivotItem()}
-              {this.createPivotItem()}
 
-                              <ApolloMission key={ this._getMissionUniqueId(mission) } 
-                              mission={ mission }
-                              onRemoveMission={ this.props.onDeleteMission } />
-
-   */ 
               this.state.filteredTiles.map(newTile => (
                 <PromotedLinkItem
                   imageUrl={newTile.imageUrl}
@@ -135,33 +118,14 @@ export default class SpfxPromotedLinks extends React.Component<ISpfxPromotedLink
       filteredCategory: item.props.headerText,
       filteredTiles: filteredTiles,
     });
-    /*
-//    const filteredTiles: PromotedLinkItem[] = this.props.allTiles.filter(tile => {   
-    var filteredTiles = this.props.allTiles.filter(tile => {
-      if (
-          (tile.category.toLowerCase().indexOf(item.props.headerText) === 0)
-      ){
-        return tile;
-      }
-    });
-*/
+
     console.log("onLinkClick: this.state - after setState");
     console.log(this.state);
     console.log("onLinkClick: this.state.allTiles");
     console.log(this.state.allTiles);
     console.log("onLinkClick: filteredTiles");
     console.log(filteredTiles);
-    // I think in here for the return, I need to have it just update the state and not return anything.
 
-    /*
-
-    return filteredTiles.map(t => ({
-      key: this._getTileUniqueId(t),
-      name: `(${t.props.category}) ${ props.description}`
-    }));
-
-
-    */
   } //End onClick
 
 
